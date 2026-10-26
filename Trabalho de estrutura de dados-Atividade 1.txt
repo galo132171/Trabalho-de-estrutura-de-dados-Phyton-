@@ -1,0 +1,23 @@
+#Atividade - Materiais Escolares
+# 1. Criação da lista vazia
+lista = []
+
+# Operação 1: Adicionar no final
+lista.append("Caderno")                  # ["Caderno"]
+
+# Operação 2: Inserir em posição específica (no índice 0)
+lista.insert(0, "Lápis")                 # ["Lápis", "Caderno"]
+
+# Operação 3: Adicionar no final novamente
+lista.append("Caneta")                   # ["Lápis", "Caderno", "Caneta"]
+
+# Operação 4: Inserir em posição específica (no índice 2)
+lista.insert(2, "Borracha")              # ["Lápis", "Caderno", "Borracha", "Caneta"]
+
+# Operação 5: Remover o último item (pop) e ajustar para 5 elementos
+lista.pop()                              # Remove "Caneta" -> ["Lápis", "Caderno", "Borracha"]
+lista.append("Régua")                    # Adiciona "Régua"
+lista.append("Tesoura")                  # Adiciona "Tesoura"
+
+print(lista)
+# Resultado final: ['Lápis', 'Caderno', 'Borracha', 'Régua', 'Tesoura'] (Total de 5 elementos)
