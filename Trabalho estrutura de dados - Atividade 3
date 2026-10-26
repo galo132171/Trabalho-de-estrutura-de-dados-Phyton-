@@ -1,4 +1,3 @@
-
 tupla_nomes = ("João", "Pedro", "Ana")
 tupla_notas = (8.5, 7.5, 10.0)
 
