@@ -1,1 +1,69 @@
+import tracemalloc
 
+
+n = 1000
+
+print("=== INICIANDO MEDIÇÃO DE ESPAÇO (MEMÓRIA) ===")
+
+
+# 1. TESTE COM LISTA
+
+tracemalloc.start()
+
+# Preparação dos dados
+lista = list(range(n))
+
+# Escrevendo as operações na lista
+elemento = lista[50]          # Consulta / Acesso direto
+encontrado = 50 in lista      # Busca sequencial
+lista[50] = 999               # Alterar elemento
+lista.append(9999)            # Adicionar elemento
+lista.pop()                   # Remover elemento
+
+memoria_atual_lista, memoria_pico_lista = tracemalloc.get_traced_memory()
+tracemalloc.stop()
+
+print(f"\n[Lista] Memória atual: {memoria_atual_lista / 1024 ** 2: .6f} MiB")
+print(f"[Lista] Pico de memória: {memoria_pico_lista / 1024 ** 2: .6f} MiB")
+
+
+
+# 2. TESTE COM TUPLA 
+# (Tuplas são imutáveis: apenas acesso e busca)
+
+tracemalloc.start()
+
+# Preparação dos dados
+tupla = tuple(range(n))
+
+# Escrevendo as operações na tupla
+elemento = tupla[50]          # Consulta / Acesso direto
+encontrado = 50 in tupla      # Busca sequencial
+
+memoria_atual_tupla, memoria_pico_tupla = tracemalloc.get_traced_memory()
+tracemalloc.stop()
+
+print(f"\n[Tupla] Memória atual: {memoria_atual_tupla / 1024 ** 2: .6f} MiB")
+print(f"[Tupla] Pico de memória: {memoria_pico_tupla / 1024 ** 2: .6f} MiB")
+
+
+
+# 3. TESTE COM DICIONÁRIO
+
+tracemalloc.start()
+
+# Preparação dos dados
+dicionario = {i: f"val_{i}" for i in range(n)}
+
+# Escrevendo as operações no dicionário
+elemento = dicionario.get(50)   # Consulta / Acesso direto
+encontrado = 50 in dicionario   # Busca sequencial por chave
+dicionario[50] = "novo_valor"   # Alterar elemento
+dicionario[9999] = "teste"      # Adicionar par chave-valor
+del dicionario[9999]            # Remover elemento
+
+memoria_atual_dict, memoria_pico_dict = tracemalloc.get_traced_memory()
+tracemalloc.stop()
+
+print(f"\n[Dicionário] Memória atual: {memoria_atual_dict / 1024 ** 2: .6f} MiB")
+print(f"[Dicionário] Pico de memória: {memoria_pico_dict / 1024 ** 2: .6f} MiB")
