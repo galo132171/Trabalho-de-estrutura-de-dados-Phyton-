@@ -1,7 +1,7 @@
 import time
 
 # Tamanho da entrada
-n = 1000  # Aumentado para 1000 repetições para tornar a medição precisa
+n = 1000  
 
 # Preparação dos dados
 lista = list(range(n))
@@ -10,9 +10,9 @@ dicionario = {i: f"val_{i}" for i in range(n)}
 
 print("=== INICIANDO MEDIÇÃO DE TEMPO DE EXECUÇÃO ===")
 
-# ==========================================
+
 # 1. TESTE COM LISTA
-# ==========================================
+
 inicio = time.perf_counter()
 
 for i in range(n):
@@ -36,10 +36,9 @@ tempo_lista = fim - inicio
 print(f"Tempo de execução (Lista): {tempo_lista:.6f} segundos")
 
 
-# ==========================================
+
 # 2. TESTE COM TUPLA 
-# (Tuplas são imutáveis: apenas acesso e busca)
-# ==========================================
+
 inicio = time.perf_counter()
 
 for i in range(n):
@@ -54,9 +53,9 @@ tempo_tupla = fim - inicio
 print(f"Tempo de execução (Tupla): {tempo_tupla:.6f} segundos")
 
 
-# ==========================================
+
 # 3. TESTE COM DICIONÁRIO
-# ==========================================
+
 inicio = time.perf_counter()
 
 for i in range(n):
