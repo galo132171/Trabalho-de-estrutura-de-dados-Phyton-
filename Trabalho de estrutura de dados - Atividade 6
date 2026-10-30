@@ -1,0 +1,47 @@
+import time
+import tracemalloc
+from collections import deque
+
+quantidades = [1000, 5000, 10000, 50000]
+
+def testar(nome, estrutura, n):
+    tracemalloc.start()
+    inicio = time.perf_counter()
+
+    # Inserção
+    for i in range(n):
+        estrutura.append(i)
+
+    # Consulta
+    for i in range(n):
+        _ = estrutura[i] if nome != "Fila" else estrutura[0]
+
+    # Remoção
+    if nome == "Fila":
+        for i in range(n):
+            estrutura.popleft()
+    elif nome == "Pilha":
+        for i in range(n):
+            estrutura.pop()
+    elif nome == "Lista":
+        for i in range(n):
+            estrutura.pop(0)
+    else:
+        for i in range(n):
+            estrutura.pop()
+
+    fim = time.perf_counter()
+    memoria = tracemalloc.get_traced_memory()[1]
+    tracemalloc.stop()
+
+    print(nome, "|", n, "elementos")
+    print("Tempo:", round(fim - inicio, 6), "segundos")
+    print("Memória:", memoria, "bytes")
+    print("-" * 40)
+
+
+for n in quantidades:
+    testar("Vetor", [], n)
+    testar("Lista", [], n)
+    testar("Pilha", [], n)
+    testar("Fila", deque(), n)
